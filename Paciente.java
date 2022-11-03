@@ -1,6 +1,7 @@
 public class Paciente {
     private String nombre;
     private String[] sintomas;
+    private Enfermedad enfermedad;
 
         //Constructor
         public Paciente(String nombre, String[] sintomas){
@@ -10,6 +11,7 @@ public class Paciente {
         //gets
         public String getNombre(){return this.nombre;}
         public String[] getSintomas(){return this.sintomas;}
+        public Enfermedad getEnfermedad(){return this.enfermedad;}
         //sets 
         public void setNombre(String nombre){this.nombre=nombre;}
         public void setSintomas(String[] sintomas){this.sintomas=sintomas;}
@@ -31,6 +33,7 @@ public class Paciente {
             String enferme="";
             Enfermedad enfermedad=new Enfermedad(sintomas);
             enferme=enfermedad.averiguarEnfermedad();
+            this.enfermedad=enfermedad;
             return enferme;
         }
     

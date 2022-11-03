@@ -8,7 +8,16 @@ public class Main {
         Paciente paciente = new Paciente("nombre", sintomas);
         Funciones funciones=new Funciones();
         Scanner teclado = new Scanner(System.in);
+        Archivo archivo=new Archivo("registro.csv");
         
+        int eleccion=0;
+        System.out.println("1. Administrador ");
+        System.out.println("2. Paciente ");
+        eleccion=teclado.nextInt();
+        if(eleccion==1){
+            System.out.println(archivo.leerArchivoString());
+        }else if(eleccion==2){
+
         // DECLARACION DE VARIABLES GENERALES
         String[] sintomasMostrar = new String[] {
         "Tos", 
@@ -38,7 +47,7 @@ public class Main {
             funciones.mostrarLista(sintomasMostrar);
             System.out.println("Ingresa el numero del sintoma que tienes ");
             numeroSintoma=teclado.nextInt()-1;
-            if(numeroSintoma>=1 && numeroSintoma<=15){
+            if(numeroSintoma>=0 && numeroSintoma<=15){
                 sintomas[contador]=sintomasMostrar[numeroSintoma];
                 System.out.println("Tienes mas sintomas? ");
                 respuesta=teclado.next();
@@ -54,6 +63,15 @@ public class Main {
         System.out.println("DIAGNOSTICO ");
         System.out.println("Su enfermedad es: ");
         System.out.println(paciente.averiguarEnfermedad(sintomasLimpio));
+        Medicamentos medicamento=new Medicamentos(paciente.getEnfermedad());
+        String medicina=medicamento.AveriguaMedicamento();
+        System.out.println("MEDICAMENTO RECOMENDADO: ");
+        System.out.println(medicina);
+        String linea=paciente.getNombre()+","+paciente.getEnfermedad().getNombre()+","+medicina;
+        archivo.escribirArchivo(linea);
+    }else{
+        System.out.println("Ingresa un valor correcto porfavor");
+    }
        
 
     }
